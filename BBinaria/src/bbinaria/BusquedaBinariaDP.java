@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class BusquedaBinariaDP {
     // Atributos
-    //Private Ordenamiento ordenamiento = new Ordenamiento();
+    private Ordenamiento ordenamiento = new Ordenamiento();
     private File archivo;
     public int[] numerosArchivo;
     private int numeroBuscar;
@@ -38,6 +38,8 @@ public class BusquedaBinariaDP {
         String[] temp = contenido.split(",", -1);
         for(int i = 0; i < temp.length; i++)
             numerosArchivo[i] = Integer.parseInt(temp[i]);
+        
+        numerosArchivo = ordenamiento.odenarInsercion(numerosArchivo);
     }
     
     public boolean verificarNumero(String numero){

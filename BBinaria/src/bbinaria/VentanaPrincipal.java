@@ -169,6 +169,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        int[] temp = bbinariaDP.getArregloNums();
+        for(int n: temp)
+            System.out.print(n + ", ");
        
     }//GEN-LAST:event_btnSelecArchivoActionPerformed
 
