@@ -25,14 +25,19 @@ public class BusquedaBinariaMD {
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
         con = DriverManager.getConnection("jdbc:derby://localhost:1527/testdb");
         stmt = con.createStatement();
-        System.out.println("conexion establecida");
         
         this.bbinariaDP = bbinariaDP;
     }
     
     // Metodos
-    public void insertar(int iteraciones, String resultado){
-        cadena = "insert into resultados values('" + iteraciones + "'" + ",'" + resultado + "')";
+    public void insertar(int numero, String resultado) throws SQLException{
+        PreparedStatement st = con.prepareStatement("insert into RESULTADO(numero, iteracion)values(?,?)");
+        st.setInt(1, numero);
+        st.setString(2, resultado);
+        int a = st.executeUpdate();
+        if(a > 0)
+            System.out.println("Row update");
+        
     }
     
     public String consultar(){

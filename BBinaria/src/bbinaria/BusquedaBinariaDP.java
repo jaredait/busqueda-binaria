@@ -74,7 +74,6 @@ public class BusquedaBinariaDP {
     public int[] buscarNumero(){
         iteraciones = 0;
         return busquedaBinaria(numerosArchivo, 0, numerosArchivo.length - 1, numeroBuscar, iteraciones);
-        //return new int[]{numEncontrado, iteraciones};
     }
     
     public int[] busquedaBinaria(int numerosArchivo[], int izq, int der, int numero, int iter){

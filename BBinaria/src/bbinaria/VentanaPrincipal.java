@@ -209,10 +209,20 @@ public class VentanaPrincipal extends javax.swing.JFrame{
     private void btnBuscNumerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscNumerActionPerformed
         if (bbinariaDP.verificarNumero(fieldNumero.getText())) {
             try {
+                int porBuscar = Integer.parseInt(fieldNumero.getText());
                 int[] resultado = bbinariaDP.buscarNumero();
+                String resultadoStr;
                 ultimoResultado.setText("# " + bbinariaDP.getNumero() + " encontrado en " + resultado[1] + " iteraciones");
                 
+                if(resultado[0] >= 0)
+                    resultadoStr = "Se encontró el número. Iteraciones: " + resultado[1];
+                else
+                    resultadoStr = "No se encontró el número. Iteraciones: " + resultado[1];
+                
+                bbinariaMD.insertar(porBuscar, resultadoStr);
+                
             } catch (Exception e) {
+                e.printStackTrace();
                 mensajeEmergente("Error", "Selecciona un archivo primero");
 
             }
