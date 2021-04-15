@@ -96,4 +96,11 @@ public class BusquedaBinariaDP {
         archivo = null;
     }
     
+    public int[] getArregloNums(){
+        return numerosArchivo;
+    }
+    
+    public int getNumero(){
+        return numeroBuscar;
+    }
 }
