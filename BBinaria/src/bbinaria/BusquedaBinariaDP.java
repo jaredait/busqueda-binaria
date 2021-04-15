@@ -71,29 +71,29 @@ public class BusquedaBinariaDP {
     // iteraciones que se completaron para encontrar el número.
     public int[] buscarNumero(){
         iteraciones = 0;
-        int numEncontrado = busquedaBinaria(numerosArchivo, 0, numerosArchivo.length - 1, numeroBuscar, iteraciones);
-        return new int[]{numEncontrado, iteraciones};
+        return busquedaBinaria(numerosArchivo, 0, numerosArchivo.length - 1, numeroBuscar, iteraciones);
+        //return new int[]{numEncontrado, iteraciones};
     }
     
-    public int busquedaBinaria(int numerosArchivo[], int izq, int der, int numero, int iter){
+    public int[] busquedaBinaria(int numerosArchivo[], int izq, int der, int numero, int iter){
         if (der >= izq) {
             iter++;
-            int medio = izq + (der - izq) / 2;
+            int mitad = izq + (der - izq) / 2;
   
-            // Si el numero se encuentra en la mitad
-            if (numerosArchivo[medio] == numero)
-                return medio;
+            // Si el numero se encuentra en la mitad retorna el indice en el que se encuentra
+            if (numerosArchivo[mitad] == numero)
+                return new int[]{mitad, iter};
   
-            // Si el elemento es menor que medio, entonces solo puede estar presente en el arreglo de la izquierda
-            if (numerosArchivo[medio] > numero)
-                return busquedaBinaria(numerosArchivo, izq, medio - 1, numero, iter);
+            // Si el elemento es menor que mitad, entonces solo puede estar presente en el arreglo de la izquierda
+            if (numerosArchivo[mitad] > numero)
+                return busquedaBinaria(numerosArchivo, izq, mitad - 1, numero, iter);
   
             // De lo contrario solo puede estar en el arreglo de la derecha
-            return busquedaBinaria(numerosArchivo, medio + 1, der, numero, iter);
+            return busquedaBinaria(numerosArchivo, mitad + 1, der, numero, iter);
         }
   
         // Si el numero no esta presente en el arreglo (paso base)
-        return -1;
+        return new int[]{-1, iter};
     }
     
     public void eliminarArchivo(){

@@ -195,7 +195,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnBuscNumerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscNumerActionPerformed
     if(bbinariaDP.verificarNumero(fieldNumero.getText())) {
         int[] resultado = bbinariaDP.buscarNumero();
-        ultimoResultado.setText("# " + resultado[1] + " encontrado en " + resultado[0] + " iteraciones");
+        
+        ultimoResultado.setText("# " + bbinariaDP.getNumero() + " encontrado en " + resultado[1] + " iteraciones");
         }
     else
         mensajeEmergente("Error", "Número no válido");
