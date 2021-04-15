@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package bbinaria;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -14,11 +15,11 @@ import javax.swing.JOptionPane;
  * @author ASUS
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+
     // Atributos de la clase
     BusquedaBinariaDP bbinariaDP = new BusquedaBinariaDP();
     //BusquedaBinariaMD = new BusquedaBinariaMD(bbinariaDP);
-    
-    
+
     /**
      * Creates new form VentanaPrincipal
      */
@@ -74,8 +75,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnElimResult.setText("Eliminar resultados");
 
         btnLimpiarPant.setText("Limpiar pantalla");
+        btnLimpiarPant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarPantActionPerformed(evt);
+            }
+        });
 
         btnElimArchivo.setText("Eliminar archivo");
+        btnElimArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnElimArchivoActionPerformed(evt);
+            }
+        });
 
         areaImpresion.setEditable(false);
         areaImpresion.setColumns(20);
@@ -180,32 +191,53 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
         String direccion = fc.getSelectedFile().getAbsolutePath();
-        
+
         // Validar el archivo segun su direccion
         try {
             bbinariaDP.verificarArchivo(direccion);
             int[] temp = bbinariaDP.getArregloNums();
-            for(int n: temp)
+            areaImpresion.setText("");
+            for (int n : temp) {
                 areaImpresion.append(n + ", ");
+            }
         } catch (Exception ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+        }
     }//GEN-LAST:event_btnSelecArchivoActionPerformed
 
     private void btnBuscNumerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscNumerActionPerformed
-    if(bbinariaDP.verificarNumero(fieldNumero.getText())) {
-        int[] resultado = bbinariaDP.buscarNumero();
-        
-        ultimoResultado.setText("# " + bbinariaDP.getNumero() + " encontrado en " + resultado[1] + " iteraciones");
+        if (bbinariaDP.verificarNumero(fieldNumero.getText())) {
+            try {
+                int[] resultado = bbinariaDP.buscarNumero();
+                ultimoResultado.setText("# " + bbinariaDP.getNumero() + " encontrado en " + resultado[1] + " iteraciones");
+            } catch (Exception e) {
+                mensajeEmergente("Error", "Selecciona un archivo primero");
+
+            }
+
+        } else {
+            mensajeEmergente("Error", "Número no válido");
         }
-    else
-        mensajeEmergente("Error", "Número no válido");
-    
-    fieldNumero.setText("");
+
+        fieldNumero.setText("");
     }//GEN-LAST:event_btnBuscNumerActionPerformed
-   public static void mensajeEmergente(String titulo, String mensaje){
+
+    private void btnElimArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimArchivoActionPerformed
+        int confirmacion = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el archivo?");
+        if (confirmacion == 0) {
+            bbinariaDP.eliminarArchivo();
+            areaImpresion.setText("");
+        }
+    }//GEN-LAST:event_btnElimArchivoActionPerformed
+
+    private void btnLimpiarPantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarPantActionPerformed
+        areaImpresion.setText("");
+
+    }//GEN-LAST:event_btnLimpiarPantActionPerformed
+    public static void mensajeEmergente(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
+
     /**
      * @param args the command line arguments
      */

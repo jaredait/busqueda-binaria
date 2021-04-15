@@ -24,6 +24,7 @@ public class BusquedaBinariaDP {
     
     // Constructor
     public BusquedaBinariaDP(){
+        archivo = null;
         numerosArchivo = new int[1000];
         numeroBuscar = -1;
         iteraciones = 0;
@@ -36,6 +37,7 @@ public class BusquedaBinariaDP {
     
     public void guardarEnArray(String contenido){
         String[] temp = contenido.split(",", -1);
+        numerosArchivo = new int[1000];
         for(int i = 0; i < temp.length; i++)
             numerosArchivo[i] = Integer.parseInt(temp[i]);
         
@@ -98,6 +100,7 @@ public class BusquedaBinariaDP {
     
     public void eliminarArchivo(){
         archivo = null;
+        numerosArchivo = null;
     }
     
     public int[] getArregloNums(){
