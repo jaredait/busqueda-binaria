@@ -68,8 +68,9 @@ public class BusquedaBinariaMD {
         
     }
     
-    public void eliminar(){
-        
+    public void eliminar() throws SQLException{
+        stmt = con.createStatement();
+        stmt.executeUpdate("delete from RESULTADO");
     }
     
     public boolean verificarMD(){

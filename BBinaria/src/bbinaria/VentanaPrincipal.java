@@ -81,6 +81,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         btnElimResult.setText("Eliminar resultados");
+        btnElimResult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnElimResultActionPerformed(evt);
+            }
+        });
 
         btnLimpiarPant.setText("Limpiar pantalla");
         btnLimpiarPant.addActionListener(new java.awt.event.ActionListener() {
@@ -257,17 +262,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             String[][] datos = bbinariaMD.consultar();
 
             // imprimir resultados en la tabla
-            DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
-            for (int i = 0; i < datos.length; i++)
-                model.insertRow(model.getRowCount(), new Object[]{datos[i][0], datos[i][1]});
-            
+            imprimirEnTabla(datos);
 
         } catch (SQLException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnObtenResultActionPerformed
+
+    private void btnElimResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimResultActionPerformed
+        try {
+            bbinariaMD.eliminar();
+            DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
+            model.setRowCount(0);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnElimResultActionPerformed
     public static void mensajeEmergente(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void imprimirEnTabla(String[][] datos) {
+        DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
+        for (int i = 0; i < datos.length; i++) {
+            model.insertRow(model.getRowCount(), new Object[]{datos[i][0], datos[i][1]});
+        }
     }
 
     /**
