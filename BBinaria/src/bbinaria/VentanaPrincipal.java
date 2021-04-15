@@ -5,6 +5,7 @@
  */
 package bbinaria;
 
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -14,18 +15,18 @@ import javax.swing.JOptionPane;
  *
  * @author ASUS
  */
-public class VentanaPrincipal extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame{
 
     // Atributos de la clase
     BusquedaBinariaDP bbinariaDP = new BusquedaBinariaDP();
-    //BusquedaBinariaMD = new BusquedaBinariaMD(bbinariaDP);
-
+    BusquedaBinariaMD bbinariaMD;
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipal() {
+    public VentanaPrincipal() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        bbinariaMD = new BusquedaBinariaMD(bbinariaDP);
     }
 
     /**
@@ -210,6 +211,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             try {
                 int[] resultado = bbinariaDP.buscarNumero();
                 ultimoResultado.setText("# " + bbinariaDP.getNumero() + " encontrado en " + resultado[1] + " iteraciones");
+                
             } catch (Exception e) {
                 mensajeEmergente("Error", "Selecciona un archivo primero");
 
@@ -268,7 +270,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaPrincipal().setVisible(true);
+                try {
+                    new VentanaPrincipal().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
