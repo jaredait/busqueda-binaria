@@ -5,6 +5,8 @@
  */
 package bbinaria;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author ASUS
@@ -13,8 +15,9 @@ public class BBinaria {
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         VentanaPrincipal miVentanaPrincipal = new VentanaPrincipal();
         miVentanaPrincipal.setVisible(true);
     }

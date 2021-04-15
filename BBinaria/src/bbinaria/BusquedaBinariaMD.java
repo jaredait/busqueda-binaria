@@ -37,12 +37,31 @@ public class BusquedaBinariaMD {
         int a = st.executeUpdate();
         if(a > 0)
             System.out.println("Row update");
+        st.close();
         
     }
     
-    public String consultar(){
-        
-        return "";
+    public String[][] consultar() throws SQLException{
+        // obtener el numero de filas para dimensionar el arreglo de retorno
+        stmt = con.createStatement();
+        result = stmt.executeQuery("SELECT COUNT(*) AS rowcount FROM RESULTADO");
+        result.next();
+        int count = result.getInt("rowcount");
+       
+        // obtener los datos de la tabla 
+        cadena = "select numero, iteracion from RESULTADO";
+        result = stmt.executeQuery(cadena);
+        String[][] datos = new String[count][2];
+        int i = 0;
+        while(result.next()){
+            String num = String.valueOf(result.getInt("numero"));
+            String iter = result.getString("iteracion");
+            datos[i][0] = num;
+            datos[i][1] = iter;
+            i++;
+        }
+
+        return datos;
     }
     
     public void modificar(){

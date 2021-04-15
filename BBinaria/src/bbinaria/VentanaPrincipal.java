@@ -10,16 +10,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ASUS
  */
-public class VentanaPrincipal extends javax.swing.JFrame{
+public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Atributos de la clase
     BusquedaBinariaDP bbinariaDP = new BusquedaBinariaDP();
     BusquedaBinariaMD bbinariaMD;
+
     /**
      * Creates new form VentanaPrincipal
      */
@@ -72,6 +74,11 @@ public class VentanaPrincipal extends javax.swing.JFrame{
         });
 
         btnObtenResult.setText("Obtener resultados");
+        btnObtenResult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObtenResultActionPerformed(evt);
+            }
+        });
 
         btnElimResult.setText("Eliminar resultados");
 
@@ -212,19 +219,17 @@ public class VentanaPrincipal extends javax.swing.JFrame{
                 int porBuscar = Integer.parseInt(fieldNumero.getText());
                 int[] resultado = bbinariaDP.buscarNumero();
                 String resultadoStr;
-                ultimoResultado.setText("# " + bbinariaDP.getNumero() + " encontrado en " + resultado[1] + " iteraciones");
-                
-                if(resultado[0] >= 0)
+
+                if (resultado[0] >= 0) {
                     resultadoStr = "Se encontró el número. Iteraciones: " + resultado[1];
-                else
+                } else {
                     resultadoStr = "No se encontró el número. Iteraciones: " + resultado[1];
-                
+                }
+
                 bbinariaMD.insertar(porBuscar, resultadoStr);
-                
             } catch (Exception e) {
                 e.printStackTrace();
                 mensajeEmergente("Error", "Selecciona un archivo primero");
-
             }
 
         } else {
@@ -246,6 +251,21 @@ public class VentanaPrincipal extends javax.swing.JFrame{
         areaImpresion.setText("");
 
     }//GEN-LAST:event_btnLimpiarPantActionPerformed
+
+    private void btnObtenResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenResultActionPerformed
+        try {
+            String[][] datos = bbinariaMD.consultar();
+
+            // imprimir resultados en la tabla
+            DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
+            for (int i = 0; i < datos.length; i++)
+                model.insertRow(model.getRowCount(), new Object[]{datos[i][0], datos[i][1]});
+            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnObtenResultActionPerformed
     public static void mensajeEmergente(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
