@@ -48,6 +48,7 @@ public class BusquedaBinariaDP {
             return true;
         }
         catch(NumberFormatException e){
+            e.printStackTrace();
             return false;
         }
     }
@@ -76,6 +77,7 @@ public class BusquedaBinariaDP {
     
     public int busquedaBinaria(int numerosArchivo[], int izq, int der, int numero, int iter){
         if (der >= izq) {
+            iter++;
             int medio = izq + (der - izq) / 2;
   
             // Si el numero se encuentra en la mitad
@@ -84,10 +86,10 @@ public class BusquedaBinariaDP {
   
             // Si el elemento es menor que medio, entonces solo puede estar presente en el arreglo de la izquierda
             if (numerosArchivo[medio] > numero)
-                return busquedaBinaria(numerosArchivo, izq, medio - 1, numero, iter++);
+                return busquedaBinaria(numerosArchivo, izq, medio - 1, numero, iter);
   
             // De lo contrario solo puede estar en el arreglo de la derecha
-            return busquedaBinaria(numerosArchivo, medio + 1, der, numero, iter++);
+            return busquedaBinaria(numerosArchivo, medio + 1, der, numero, iter);
         }
   
         // Si el numero no esta presente en el arreglo (paso base)
