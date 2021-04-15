@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package bbinaria;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -16,6 +17,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -27,6 +29,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         btnSelecArchivo = new javax.swing.JButton();
         btnBuscNumer = new javax.swing.JButton();
@@ -45,6 +48,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Búsqueda Binaria");
 
         btnSelecArchivo.setText("Seleccionar archivo");
+        btnSelecArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecArchivoActionPerformed(evt);
+            }
+        });
 
         btnBuscNumer.setText("Buscar número");
 
@@ -144,6 +152,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSelecArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecArchivoActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(this);
+        String direccion = fc.getSelectedFile().getAbsolutePath();
+        System.out.println(direccion);
+    }//GEN-LAST:event_btnSelecArchivoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -188,6 +203,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnObtenResult;
     private javax.swing.JButton btnSelecArchivo;
     private javax.swing.JTextField fieldNumero;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

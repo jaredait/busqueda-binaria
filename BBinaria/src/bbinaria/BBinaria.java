@@ -15,7 +15,8 @@ public class BBinaria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        VentanaPrincipal miVentanaPrincipal = new VentanaPrincipal();
+        miVentanaPrincipal.setVisible(true);
     }
     
 }
