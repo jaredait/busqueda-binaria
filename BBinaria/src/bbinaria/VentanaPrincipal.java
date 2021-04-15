@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package bbinaria;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -11,7 +13,11 @@ import javax.swing.JFileChooser;
  * @author ASUS
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+    // Atributos de la clase
+    BusquedaBinariaDP bbinariaDP = new BusquedaBinariaDP();
+    //BusquedaBinariaMD = new BusquedaBinariaMD(bbinariaDP);
+    
+    
     /**
      * Creates new form VentanaPrincipal
      */
@@ -156,7 +162,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
         String direccion = fc.getSelectedFile().getAbsolutePath();
-        System.out.println(direccion);
+        
+        // Validar el archivo segun su direccion
+        try {
+            bbinariaDP.verificarArchivo(direccion);
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        int[] arrNumeros = bbinariaDP.numerosArchivo;
+        System.out.println(arrNumeros.length);
     }//GEN-LAST:event_btnSelecArchivoActionPerformed
 
     /**

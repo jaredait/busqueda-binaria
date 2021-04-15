@@ -18,7 +18,7 @@ public class BusquedaBinariaDP {
     // Atributos
     //Private Ordenamiento ordenamiento = new Ordenamiento();
     private File archivo;
-    private int[] numerosArchivo;
+    public int[] numerosArchivo;
     private int numeroBuscar;
     private int iteraciones;
     
@@ -58,9 +58,7 @@ public class BusquedaBinariaDP {
         archivo = new File(direccion);
         BufferedReader br = new BufferedReader(new FileReader(archivo));
 
-        String st;
-        while ((st = br.readLine()) != null)
-            st += st;
+        String st = br.readLine();
         
         guardarEnArray(st.trim());
     }
