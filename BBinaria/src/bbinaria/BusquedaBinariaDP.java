@@ -137,4 +137,8 @@ public class BusquedaBinariaDP {
     public void eliminarResultadosDP() throws SQLException {
         bbinariaMD.eliminar();
     }
+    
+    public String[][] obtenerTodosResultados() throws SQLException{
+        return bbinariaMD.consultar();
+    }
 }

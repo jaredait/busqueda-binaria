@@ -297,7 +297,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void imprimirEnTabla() {
         try {
-            String[][] datos = bbinariaMD.consultar();
+            String[][] datos = bbinariaDP.obtenerTodosResultados();
             DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
             model.setRowCount(0);
 
