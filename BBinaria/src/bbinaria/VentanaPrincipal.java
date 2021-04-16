@@ -30,6 +30,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaPrincipal
+     * @throws java.sql.SQLException
+     * @throws java.io.IOException
      */
     public VentanaPrincipal() throws SQLException, IOException {
         initComponents();
@@ -251,22 +253,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnBuscNumerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscNumerActionPerformed
         if (bbinariaDP.verificarNumero(fieldNumero.getText())) {
-            try {
-                int porBuscar = Integer.parseInt(fieldNumero.getText());
-                int[] resultado = bbinariaDP.buscarNumero();
-                String resultadoStr;
-
-                if (resultado[0] >= 0) {
-                    resultadoStr = "Se encontró el número. Iteraciones: " + resultado[1];
-                } else {
-                    resultadoStr = "No se encontró el número. Iteraciones: " + resultado[1];
-                }
-
-                bbinariaMD.insertar(porBuscar, resultadoStr);
-            } catch (Exception e) {
-                e.printStackTrace();
-                mensajeEmergente("Error", "Selecciona un archivo primero");
-            }
+            // poner aqui un try cathc para la validacion del numero
+            int porBuscar = Integer.parseInt(fieldNumero.getText());
+            bbinariaDP.setNumeroBuscar(porBuscar);
+            bbinariaDP.buscarNumero();
+            bbinariaDP.guardarDP();
 
         } else {
             mensajeEmergente("Error", "Número no válido");
@@ -314,6 +305,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnElimResultActionPerformed
+    
     public static void mensajeEmergente(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }

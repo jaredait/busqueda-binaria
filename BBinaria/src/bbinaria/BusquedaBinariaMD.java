@@ -5,7 +5,6 @@
  */
 package bbinaria;
 
-import com.sun.corba.se.spi.orb.PropertyParser;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,7 +17,7 @@ import java.util.Properties;
  */
 public class BusquedaBinariaMD {
     
-    private BusquedaBinariaDP bbinariaDP = new BusquedaBinariaDP();
+    private BusquedaBinariaDP bbinariaDP;
     
     Connection con;
     Statement stmt;
@@ -41,12 +40,13 @@ public class BusquedaBinariaMD {
     }
     
     // Metodos
-    public void insertar(int numero, String resultado) throws SQLException{
-        PreparedStatement st = con.prepareStatement("insert into RESULTADO(numero, iteracion)values(?,?)");
-        st.setInt(1, numero);
-        st.setString(2, resultado);
-        int a = st.executeUpdate();
-        st.close();
+    public void insertar() throws SQLException{
+        try (PreparedStatement st = con.prepareStatement("insert into RESULTADO(numero, iteracion)values(?,?)")) {
+            st.setInt(1, bbinariaDP.getNumero());
+            st.setString(2, bbinariaDP.getResultado());
+            System.out.println(bbinariaDP.getResultado());
+            int a = st.executeUpdate();
+        }
     }
     
     public String[][] consultar() throws SQLException{
