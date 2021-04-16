@@ -7,6 +7,7 @@ package bbinaria;
 
 import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.awt.Color;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,14 +31,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipal() throws SQLException {
+    public VentanaPrincipal() throws SQLException, IOException {
         initComponents();
         setLocationRelativeTo(null);
         bbinariaMD = new BusquedaBinariaMD(bbinariaDP);
         TableColumnModel m = tablaImpresion.getColumnModel();
-        m.getColumn(0).setPreferredWidth(50);        
+        m.getColumn(0).setPreferredWidth(50);
         m.getColumn(1).setPreferredWidth(650);
-        
+
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         tablaImpresion.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
@@ -204,14 +205,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnSelecArchivo)
                     .addComponent(btnElimArchivo))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnElimResult)
                     .addComponent(btnObtenResult))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpiarPant)
-                    .addComponent(btnBuscNumer)
-                    .addComponent(fieldNumero))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fieldNumero, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnLimpiarPant)
+                        .addComponent(btnBuscNumer)))
                 .addContainerGap())
         );
 
@@ -274,7 +276,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscNumerActionPerformed
 
     private void btnElimArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimArchivoActionPerformed
-        int confirmacion = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el archivo?");
+        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar el archivo?");
         if (confirmacion == 0) {
             bbinariaDP.eliminarArchivo();
             areaImpresion.setText("");
@@ -300,9 +302,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnElimResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimResultActionPerformed
         try {
-            bbinariaMD.eliminar();
-            DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
-            model.setRowCount(0);
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar los resultados?");
+            if (confirmacion == 0) {
+                bbinariaMD.eliminar();
+                DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
+                model.setRowCount(0);
+            }
+            
 
         } catch (SQLException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -352,6 +358,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 try {
                     new VentanaPrincipal().setVisible(true);
                 } catch (SQLException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
                     Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
