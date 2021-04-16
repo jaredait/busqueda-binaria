@@ -254,12 +254,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnBuscNumerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscNumerActionPerformed
         try {
-            //if (bbinariaDP.verificarNumero(fieldNumero.getText())) {
-                // poner aqui un try cathc para la validacion del numero
                 int porBuscar = Integer.parseInt(fieldNumero.getText());
                 bbinariaDP.setNumeroBuscar(porBuscar);
                 bbinariaDP.buscarNumero();
-            //}
+                imprimirEnTabla();
         } catch (Exception e) {
             mensajeEmergente("Error", "Número no válido");
         } finally {
@@ -280,18 +278,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarPantActionPerformed
 
     private void btnObtenResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenResultActionPerformed
-        try {
-            String[][] datos = bbinariaMD.consultar();
-            DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
-            model.setRowCount(0);
-            // imprimir resultados en la tabla
-            imprimirEnTabla(datos);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        imprimirEnTabla();
     }//GEN-LAST:event_btnObtenResultActionPerformed
-
+    
     private void btnElimResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimResultActionPerformed
         try {
             int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar los resultados?");
@@ -310,10 +299,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void imprimirEnTabla(String[][] datos) {
-        DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
-        for (int i = 0; i < datos.length; i++) {
-            model.insertRow(model.getRowCount(), new Object[]{datos[i][0], datos[i][1]});
+    public void imprimirEnTabla() {
+        try {
+            String[][] datos = bbinariaMD.consultar();
+            DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
+            model.setRowCount(0);
+            
+            for (String[] dato : datos) {
+                model.insertRow(model.getRowCount(), new Object[]{dato[0], dato[1]});
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

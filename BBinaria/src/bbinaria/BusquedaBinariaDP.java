@@ -54,19 +54,8 @@ public class BusquedaBinariaDP {
         
         numerosArchivo = ordenamiento.odenarInsercion(numerosArchivo);
     }
-    
-    public boolean verificarNumero(String numero){
-        try{
-            numeroBuscar = Integer.parseInt(numero);
-            return true;
-        }
-        catch(NumberFormatException e){
-            e.printStackTrace();
-            return false;
-        }
-    }
-    
-    
+   
+  
     // Si no lanza alguna de las excepciones significa que el archivo es correcto
     // pero no necesariamente contiene numeros validos. Cargar archivo se 
     // encarga de validar el contenido
