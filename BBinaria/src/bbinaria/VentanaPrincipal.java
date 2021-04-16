@@ -30,6 +30,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaPrincipal
+     *
      * @throws java.sql.SQLException
      * @throws java.io.IOException
      */
@@ -252,16 +253,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSelecArchivoActionPerformed
 
     private void btnBuscNumerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscNumerActionPerformed
-        if (bbinariaDP.verificarNumero(fieldNumero.getText())) {
-            // poner aqui un try cathc para la validacion del numero
-            int porBuscar = Integer.parseInt(fieldNumero.getText());
-            bbinariaDP.setNumeroBuscar(porBuscar);
-            bbinariaDP.buscarNumero();
-        } else {
+        try {
+            //if (bbinariaDP.verificarNumero(fieldNumero.getText())) {
+                // poner aqui un try cathc para la validacion del numero
+                int porBuscar = Integer.parseInt(fieldNumero.getText());
+                bbinariaDP.setNumeroBuscar(porBuscar);
+                bbinariaDP.buscarNumero();
+            //}
+        } catch (Exception e) {
             mensajeEmergente("Error", "Número no válido");
+        } finally {
+            fieldNumero.setText("");
         }
-
-        fieldNumero.setText("");
     }//GEN-LAST:event_btnBuscNumerActionPerformed
 
     private void btnElimArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimArchivoActionPerformed
@@ -297,13 +300,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
                 model.setRowCount(0);
             }
-            
 
         } catch (SQLException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnElimResultActionPerformed
-    
+
     public static void mensajeEmergente(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
