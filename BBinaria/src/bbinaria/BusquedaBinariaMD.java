@@ -35,10 +35,7 @@ public class BusquedaBinariaMD {
         st.setInt(1, numero);
         st.setString(2, resultado);
         int a = st.executeUpdate();
-        if(a > 0)
-            System.out.println("Row update");
         st.close();
-        
     }
     
     public String[][] consultar() throws SQLException{

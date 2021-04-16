@@ -6,6 +6,7 @@
 package bbinaria;
 
 import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,11 +36,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bbinariaMD = new BusquedaBinariaMD(bbinariaDP);
         TableColumnModel m = tablaImpresion.getColumnModel();
         m.getColumn(0).setPreferredWidth(50);        
-        m.getColumn(1).setPreferredWidth(700);
+        m.getColumn(1).setPreferredWidth(650);
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         tablaImpresion.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        this.setBackground(Color.BLACK);
 
     }
 
@@ -53,65 +55,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnSelecArchivo = new javax.swing.JButton();
-        btnBuscNumer = new javax.swing.JButton();
-        btnObtenResult = new javax.swing.JButton();
-        fieldNumero = new javax.swing.JTextField();
-        btnElimResult = new javax.swing.JButton();
-        btnLimpiarPant = new javax.swing.JButton();
-        btnElimArchivo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         areaImpresion = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaImpresion = new javax.swing.JTable();
-        ultimoResultado = new javax.swing.JLabel();
+        btnSelecArchivo = new javax.swing.JButton();
+        btnObtenResult = new javax.swing.JButton();
+        btnBuscNumer = new javax.swing.JButton();
+        fieldNumero = new javax.swing.JTextField();
+        btnElimArchivo = new javax.swing.JButton();
+        btnElimResult = new javax.swing.JButton();
+        btnLimpiarPant = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 255, 51));
+        setResizable(false);
 
+        jPanel1.setBackground(java.awt.Color.white);
+
+        jLabel1.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
         jLabel1.setText("Búsqueda Binaria");
-
-        btnSelecArchivo.setText("Seleccionar archivo");
-        btnSelecArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelecArchivoActionPerformed(evt);
-            }
-        });
-
-        btnBuscNumer.setText("Buscar número");
-        btnBuscNumer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscNumerActionPerformed(evt);
-            }
-        });
-
-        btnObtenResult.setText("Obtener resultados");
-        btnObtenResult.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnObtenResultActionPerformed(evt);
-            }
-        });
-
-        btnElimResult.setText("Eliminar resultados");
-        btnElimResult.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnElimResultActionPerformed(evt);
-            }
-        });
-
-        btnLimpiarPant.setText("Limpiar pantalla");
-        btnLimpiarPant.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarPantActionPerformed(evt);
-            }
-        });
-
-        btnElimArchivo.setText("Eliminar archivo");
-        btnElimArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnElimArchivoActionPerformed(evt);
-            }
-        });
 
         areaImpresion.setEditable(false);
         areaImpresion.setColumns(20);
@@ -119,6 +84,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         areaImpresion.setRows(5);
         jScrollPane1.setViewportView(areaImpresion);
 
+        tablaImpresion.setBackground(new java.awt.Color(255, 255, 255));
+        tablaImpresion.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
         tablaImpresion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -138,75 +105,125 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tablaImpresion.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tablaImpresion);
 
+        btnSelecArchivo.setBackground(new java.awt.Color(255, 255, 255));
+        btnSelecArchivo.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
+        btnSelecArchivo.setText("Seleccionar archivo");
+        btnSelecArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecArchivoActionPerformed(evt);
+            }
+        });
+
+        btnObtenResult.setBackground(new java.awt.Color(255, 255, 255));
+        btnObtenResult.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
+        btnObtenResult.setText("Obtener resultados");
+        btnObtenResult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObtenResultActionPerformed(evt);
+            }
+        });
+
+        btnBuscNumer.setBackground(new java.awt.Color(255, 255, 255));
+        btnBuscNumer.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
+        btnBuscNumer.setText("Buscar número");
+        btnBuscNumer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscNumerActionPerformed(evt);
+            }
+        });
+
+        fieldNumero.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
+
+        btnElimArchivo.setBackground(new java.awt.Color(255, 255, 255));
+        btnElimArchivo.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
+        btnElimArchivo.setText("Eliminar archivo");
+        btnElimArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnElimArchivoActionPerformed(evt);
+            }
+        });
+
+        btnElimResult.setBackground(new java.awt.Color(255, 255, 255));
+        btnElimResult.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
+        btnElimResult.setText("Eliminar resultados");
+        btnElimResult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnElimResultActionPerformed(evt);
+            }
+        });
+
+        btnLimpiarPant.setBackground(new java.awt.Color(255, 255, 255));
+        btnLimpiarPant.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
+        btnLimpiarPant.setText("Limpiar pantalla");
+        btnLimpiarPant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarPantActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnBuscNumer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fieldNumero))
+                    .addComponent(btnSelecArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnObtenResult, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnElimArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnElimResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLimpiarPant, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(153, 153, 153))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addGap(44, 44, 44))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(308, 308, 308)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSelecArchivo)
+                    .addComponent(btnElimArchivo))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnElimResult)
+                    .addComponent(btnObtenResult))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLimpiarPant)
+                    .addComponent(btnBuscNumer)
+                    .addComponent(fieldNumero))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(38, 38, 38))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(ultimoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(169, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(294, 294, 294))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(btnBuscNumer)
-                        .addGap(18, 18, 18)
-                        .addComponent(fieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(btnLimpiarPant))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSelecArchivo)
-                                .addGap(104, 104, 104)
-                                .addComponent(btnElimArchivo))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnObtenResult)
-                                .addGap(93, 93, 93)
-                                .addComponent(btnElimResult)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane2)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ultimoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSelecArchivo)
-                    .addComponent(btnElimArchivo))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnElimResult)
-                    .addComponent(btnObtenResult))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpiarPant)
-                    .addComponent(btnBuscNumer)
-                    .addComponent(fieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -266,13 +283,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnLimpiarPantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarPantActionPerformed
         areaImpresion.setText("");
-
     }//GEN-LAST:event_btnLimpiarPantActionPerformed
 
     private void btnObtenResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenResultActionPerformed
         try {
             String[][] datos = bbinariaMD.consultar();
-
+            DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
+            model.setRowCount(0);
             // imprimir resultados en la tabla
             imprimirEnTabla(datos);
 
@@ -352,9 +369,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField fieldNumero;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaImpresion;
-    private javax.swing.JLabel ultimoResultado;
     // End of variables declaration//GEN-END:variables
 }
