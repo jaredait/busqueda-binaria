@@ -282,11 +282,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         try {
             int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar los resultados?");
             if (confirmacion == 0) {
-                bbinariaMD.eliminar();
+                bbinariaDP.eliminarResultadosDP();
                 DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
                 model.setRowCount(0);
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }

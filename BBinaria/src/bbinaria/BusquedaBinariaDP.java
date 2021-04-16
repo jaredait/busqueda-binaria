@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,7 +31,7 @@ public class BusquedaBinariaDP {
 
     // Constructor
     public BusquedaBinariaDP() throws SQLException, IOException {
-        archivo = null;;
+        archivo = null;
         numeroBuscar = -1;
         iteraciones = 0;
         encontrado = false;
@@ -131,5 +132,9 @@ public class BusquedaBinariaDP {
 
     public void setNumeroBuscar(int numero) {
         numeroBuscar = numero;
+    }
+
+    public void eliminarResultadosDP() throws SQLException {
+        bbinariaMD.eliminar();
     }
 }
