@@ -71,8 +71,9 @@ public class BusquedaBinariaDP {
     // El primer número indica si se encontró el número. Si es mayor o igual que
     // 0 significa que lo encontró. El segundo número indica el número de 
     // iteraciones que se completaron para encontrar el número.
-    public void buscarNumero(){
+    public void buscarNumero() throws NullPointerException{
         iteraciones = 0;
+       
         encontrado = busquedaBinaria(numerosArchivo, 0, numerosArchivo.length - 1, numeroBuscar);
         setResultado();
         guardarDP();
@@ -104,7 +105,6 @@ public class BusquedaBinariaDP {
         resultado = encontrado ?  
                 "Se encontró el número. Iteraciones: " + iteraciones 
                 : "No se encontró el número. Iteraciones: " + iteraciones;
-        System.out.println("setResultado check");
     }
     
     public String getResultado(){

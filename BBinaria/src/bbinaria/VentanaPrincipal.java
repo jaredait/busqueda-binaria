@@ -25,7 +25,7 @@ import javax.swing.table.TableColumnModel;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Atributos de la clase
-    BusquedaBinariaDP bbinariaDP = new BusquedaBinariaDP();
+    BusquedaBinariaDP bbinariaDP;
     BusquedaBinariaMD bbinariaMD;
 
     /**
@@ -36,6 +36,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() throws SQLException, IOException {
         initComponents();
+        bbinariaDP = new BusquedaBinariaDP();
         setLocationRelativeTo(null);
         bbinariaMD = new BusquedaBinariaMD(bbinariaDP);
         TableColumnModel m = tablaImpresion.getColumnModel();
@@ -254,14 +255,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnBuscNumerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscNumerActionPerformed
         try {
-                int porBuscar = Integer.parseInt(fieldNumero.getText());
-                bbinariaDP.setNumeroBuscar(porBuscar);
-                bbinariaDP.buscarNumero();
-                imprimirEnTabla();
-        } catch (Exception e) {
-            mensajeEmergente("Error", "Número no válido");
-        } finally {
-            fieldNumero.setText("");
+            buscar();
+
+        } catch (NullPointerException e) {
+            mensajeEmergente("Error", "Seleccione un archivo antes de comenzar la búsqueda");
         }
     }//GEN-LAST:event_btnBuscNumerActionPerformed
 
@@ -280,7 +277,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnObtenResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenResultActionPerformed
         imprimirEnTabla();
     }//GEN-LAST:event_btnObtenResultActionPerformed
-    
+
     private void btnElimResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimResultActionPerformed
         try {
             int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar los resultados?");
@@ -304,12 +301,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             String[][] datos = bbinariaMD.consultar();
             DefaultTableModel model = (DefaultTableModel) tablaImpresion.getModel();
             model.setRowCount(0);
-            
+
             for (String[] dato : datos) {
                 model.insertRow(model.getRowCount(), new Object[]{dato[0], dato[1]});
-        }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void buscar() {
+        try {
+            int porBuscar = Integer.parseInt(fieldNumero.getText());
+            bbinariaDP.setNumeroBuscar(porBuscar);
+            bbinariaDP.buscarNumero();
+            imprimirEnTabla();
+        } catch (NumberFormatException e) {
+            mensajeEmergente("Error", "Número no válido");
+        } finally {
+            fieldNumero.setText("");
         }
     }
 
