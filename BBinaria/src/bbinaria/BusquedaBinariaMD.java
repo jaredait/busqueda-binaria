@@ -5,7 +5,12 @@
  */
 package bbinaria;
 
+import com.sun.corba.se.spi.orb.PropertyParser;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 /**
  *
@@ -21,9 +26,15 @@ public class BusquedaBinariaMD {
     String cadena;
     
     // Constructor
-    public BusquedaBinariaMD(BusquedaBinariaDP bbinariaDP) throws SQLException{
+    public BusquedaBinariaMD(BusquedaBinariaDP bbinariaDP) throws SQLException, FileNotFoundException, IOException{
+        // Leer el arhivo dbderby.properties
+        Properties props = new Properties();
+        props.load(new FileInputStream("src/sql/dbderby.properties"));
+        
+        String miDbUrl = props.getProperty("dburl");
+        
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        con = DriverManager.getConnection("jdbc:derby://localhost:1527/testdb");
+        con = DriverManager.getConnection(miDbUrl);
         stmt = con.createStatement();
         
         this.bbinariaDP = bbinariaDP;
