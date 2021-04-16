@@ -257,8 +257,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             int porBuscar = Integer.parseInt(fieldNumero.getText());
             bbinariaDP.setNumeroBuscar(porBuscar);
             bbinariaDP.buscarNumero();
-            bbinariaDP.guardarDP();
-
         } else {
             mensajeEmergente("Error", "Número no válido");
         }

@@ -86,6 +86,7 @@ public class BusquedaBinariaDP {
         iteraciones = 0;
         encontrado = busquedaBinaria(numerosArchivo, 0, numerosArchivo.length - 1, numeroBuscar);
         setResultado();
+        guardarDP();
         
     }
     
